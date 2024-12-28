@@ -47,8 +47,8 @@ public class WebController {
     /**
      * LINEログインしてauthページへ行く
      */
-    @RequestMapping("/sample")
-    public String sample() {
+    @RequestMapping("/trial")
+    public String trial(HttpSession httpSession) {
         final String state = CommonUtils.getToken();
         final String nonce = CommonUtils.getToken();
         httpSession.setAttribute(LINE_WEB_LOGIN_STATE, state);
