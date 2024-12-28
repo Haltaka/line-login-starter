@@ -45,6 +45,19 @@ public class WebController {
     private LineAPIService lineAPIService;
 
     /**
+     * LINEログインしてauthページへ行く
+     */
+    @RequestMapping("/sample")
+    public String sample() {
+        final String state = CommonUtils.getToken();
+        final String nonce = CommonUtils.getToken();
+        httpSession.setAttribute(LINE_WEB_LOGIN_STATE, state);
+        httpSession.setAttribute(NONCE, nonce);
+        final String url = lineAPIService.getLineWebLoginUrl(state, nonce, Arrays.asList("openid", "profile"));
+        return "redirect:" + url;
+    }
+
+    /**
      * <p>LINE Login Button Page
      * <p>Login Type is to log in on any desktop or mobile website
      */
